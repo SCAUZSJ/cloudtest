@@ -1,5 +1,6 @@
 package com.milo.order.service.impl;
 
+import com.milo.order.feign.BookFeign;
 import com.milo.order.model.Book;
 import com.milo.order.model.Order;
 import com.milo.order.service.OrderService;
@@ -17,6 +18,9 @@ public class OrderServiceImpl implements OrderService {
   //提供的用于访问Rest服务的客户端
   @Autowired
   private RestTemplate restTemplate;
+
+  @Autowired
+  private BookFeign bookFeign;
 
   private static final Map<Long, Order> ITEM_MAP = new HashMap<Long, Order>();
 
@@ -38,7 +42,8 @@ public class OrderServiceImpl implements OrderService {
 
     Order order = ITEM_MAP.get(id);
     for(Long bookId : order.getBookIds()){
-      System.out.println(restTemplate.getForObject(bookServiceUrl+bookId, Book.class));
+//      System.out.println(restTemplate.getForObject(bookServiceUrl+bookId, Book.class));
+      System.out.println(bookFeign.selectBookById(bookId));
     }
     return ITEM_MAP.get(id);
   }
