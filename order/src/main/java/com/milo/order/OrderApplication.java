@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 public class OrderApplication {
 
   @Bean
-  @LoadBalanced
+  @LoadBalanced //启用负载均衡 默认方式 轮询
   public RestTemplate restTemplate(){
     return new RestTemplate();
   }

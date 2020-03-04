@@ -1,6 +1,7 @@
 package com.milo.book.service.Impl;
 
 import com.milo.book.model.Book;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,7 @@ public class BookServiceImpl implements BookService {
    */
   @Override
   public Book selectBookById(Long id) {
+    System.out.println(LocalDateTime.now() + "被访问");
     return ITEM_MAP.get(id);
   }
 }
