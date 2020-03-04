@@ -9,8 +9,18 @@ spring:
       password: 123456
 
 eureka:
+  instance:
+    hostname: milo-eureka  #在host文件中 添加 127.0.0.1 milo-eureka 解析域名
+    prefer-ip-address: true
+    #心跳时间 默认30秒
+    lease-renewal-interval-in-seconds: 5
+    #定义服务失效时间 默认90秒
+    lease-expiration-duration-in-seconds: 30
   client:
     register-with-eureka: false #是否注册到Eureka服务中
     fetch-registry: false #是否从Eureka服务中获取注册信息
     service-url: #Eureka客户端与服务端进行交互的地址
-      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@localhost:${server.port}/eureka/
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${eureka.instance.hostname}:${server.port}/eureka/
+    server:
+      eviction-interval-timer-in-ms: 4000 #清理无效节点时间 4s
+      enable-self-preservation: false #关闭保护机制
