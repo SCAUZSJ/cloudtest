@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableHystrix
-@EnableFeignClients
+@EnableFeignClients(basePackages = {"com.milo"})
 public class OrderApplication {
 
   @Bean

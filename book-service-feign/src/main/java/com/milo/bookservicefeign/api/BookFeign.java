@@ -1,6 +1,6 @@
-package com.milo.order.feign;
+package com.milo.bookservicefeign.api;
 
-import com.milo.order.model.Book;
+import com.milo.bookservicefeign.model.Book;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,5 +9,5 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface BookFeign {
 
   @GetMapping("/book/{id}")
-  public Book selectBookById(@PathVariable("id") Long id);
+  Book selectBookById(@PathVariable("id") Long id);
 }

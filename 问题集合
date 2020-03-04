@@ -15,3 +15,8 @@
 [P2] (2020-03-04) 使用ribbon负载均衡请求问题
 描述：生成2个book实例，一次请求发现2个实例都被访问到了，负载均衡失效
 结果：傻逼操作，按测试数据来看，是一次请求中会访问两次book服务，所以问题不存在。XSWL。
+
+[P3] (2020-03-04) Feign Bean找不到
+描述：参照EPAN的feign分离设计时，启动order报找不到feign bean异常
+解决：@EnableFeignClients(basePackages = {"com.milo"}) 该字段basePackages的值默认为当前目录下（com.milo.order）,
+      所以需要指定扫描路径。（com.milo.*.api 或 com.milo.**.api 等）

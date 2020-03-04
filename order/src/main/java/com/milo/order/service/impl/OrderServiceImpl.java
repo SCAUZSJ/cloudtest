@@ -1,6 +1,6 @@
 package com.milo.order.service.impl;
 
-import com.milo.order.feign.BookFeign;
+import com.milo.bookservicefeign.api.BookFeign;
 import com.milo.order.model.Book;
 import com.milo.order.model.Order;
 import com.milo.order.service.OrderService;
@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -19,7 +20,7 @@ public class OrderServiceImpl implements OrderService {
   @Autowired
   private RestTemplate restTemplate;
 
-  @Autowired
+  @Resource
   private BookFeign bookFeign;
 
   private static final Map<Long, Order> ITEM_MAP = new HashMap<Long, Order>();
