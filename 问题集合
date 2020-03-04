@@ -1,4 +1,12 @@
 
-问题1.（2020-03-03）添加父级pom.xml出异常
+[P1]（2020-03-03）添加父级pom.xml出异常
 描述：在pom文件的<parent>标签添加最外层父级pom.xml，报异常：java.lang.ClassNotFoundException: org.springframework.boot.context.properties.ConfigurationPropertiesBean
 结果：导致依赖在每个服务里都需要定义
+解决：1）父级pom需要添加声明子模块，使用<modules>标签，子级使用<parent>标签，这样可同步父级依赖。
+     2）异常出现原因是spring版本过低,从原本的2.1.2改为2.2.2解决异常问题。
+     <parent>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-parent</artifactId>
+         <version>2.2.2.RELEASE</version>
+         <relativePath/> <!-- lookup parent from repository -->
+       </parent>
