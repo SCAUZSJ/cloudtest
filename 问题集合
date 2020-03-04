@@ -10,3 +10,7 @@
          <version>2.2.2.RELEASE</version>
          <relativePath/> <!-- lookup parent from repository -->
        </parent>
+
+
+[P2] (2020-03-04) 使用ribbon负载均衡请求问题
+描述：生成2个book实例，一次请求发现2个实例都被访问到了，负载均衡失效
