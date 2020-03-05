@@ -1,5 +1,6 @@
 package com.milo.order;
 
+import com.milo.common.config.EnableMiloFeignClients;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -12,7 +13,8 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableHystrix
-@EnableFeignClients(basePackages = {"com.milo"})
+//@EnableFeignClients(basePackages = {"com.milo"})
+@EnableMiloFeignClients
 public class OrderApplication {
 
   @Bean

@@ -20,3 +20,8 @@
 描述：参照EPAN的feign分离设计时，启动order报找不到feign bean异常
 解决：@EnableFeignClients(basePackages = {"com.milo"}) 该字段basePackages的值默认为当前目录下（com.milo.order）,
       所以需要指定扫描路径。（com.milo.*.api 或 com.milo.**.api 等）
+
+[P4] (2020-03-05) 每次使用@EnableFeignClients都需要指定basePackages
+描述：如上
+解决：自己实现一个注解@EnableMiloFeignClients去继承@EnableFeignClients，并设置默认属性
+      String[] basePackages() default {"com.milo"}, 需要时也可传值。
