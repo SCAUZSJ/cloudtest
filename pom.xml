@@ -92,6 +92,7 @@
   </dependencyManagement>
 
   <modules>
+    <module>common</module>
     <module>book</module>
     <module>book2</module>
     <module>book-service-feign</module>
