@@ -1,4 +1,4 @@
-package com.milo.common.config;
+package com.milo.common.config.annotation;
 
 
 import java.lang.annotation.Documented;
