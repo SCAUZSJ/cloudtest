@@ -1,11 +1,17 @@
 
 server:
   port: 8050
+#  tomcat:
+#    uri-encoding: UTF-8
 
 spring:
   application:
     name: book-service #指定服务名称
-
+#  http:
+#    encoding:
+#      force: true
+#      charset: UTF-8
+#      enabled: true
 eureka:
   client:
     register-with-eureka: true #是否注册到Eureka服务中
