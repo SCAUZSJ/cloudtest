@@ -39,7 +39,7 @@ public class OrderServiceImpl implements OrderService {
    */
   @Override
   public Order selectOrderById(Long id) {
-    String bookServiceUrl = "http://book-service/book/";
+//    String bookServiceUrl = "http://book-service/book/";
 
     Order order = ITEM_MAP.get(id);
     for(Long bookId : order.getBookIds()){

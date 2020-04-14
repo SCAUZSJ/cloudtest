@@ -21,17 +21,23 @@
 
   <dependencies>
 
-    <!-- 依赖book-service-feign -->
-    <dependency>
-      <groupId>com.milo</groupId>
-      <artifactId>book-service-feign</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
-    </dependency>
-
     <!-- 依赖公共服务common -->
     <dependency>
       <groupId>com.milo</groupId>
       <artifactId>common</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
+
+    <!-- 依赖book-service-feign -->
+    <dependency>
+      <groupId>com.milo</groupId>
+      <artifactId>book-service-feign</artifactId>
       <version>0.0.1-SNAPSHOT</version>
     </dependency>
 
@@ -48,7 +54,7 @@
     <!-- eureka  -->
     <dependency>
       <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+      <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
     </dependency>
 
   </dependencies>

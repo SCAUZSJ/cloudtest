@@ -29,8 +29,13 @@
     </dependency>
 
     <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
+    <dependency>
       <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+      <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
       <exclusions>
         <exclusion>
           <!--排除Eureka自带的数据格式转换，否则返回的结果会被转成XML格式的数据-->
@@ -40,10 +45,10 @@
       </exclusions>
     </dependency>
 
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.springframework.cloud</groupId>-->
+<!--      <artifactId>spring-cloud-starter-netflix-zuul</artifactId>-->
+<!--    </dependency>-->
 
   </dependencies>
 
