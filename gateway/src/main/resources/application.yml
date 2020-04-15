@@ -15,20 +15,18 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: order  #???????????id
-          uri: lb://order-service  # ??URL?lb????????????lb?Load Balance???
+        - id: order  #规则id
+          uri: lb://order-service  # 转发目标服务
           predicates:
-            # Predicate??
-            - Path=/api/order/**  # ????
+            - Path=/api/order/**  # 匹配路径
           filters:
-            # Filter??
-            - StripPrefix=1  # ?????????
+            # Filter
+            - StripPrefix=1  # 去除前缀级别
         - id: book
           uri: lb://book-service
           predicates:
             - Path=/api/book/**
           filters:
-            # Filter??
-            - StripPrefix=1  # ?????????
+            - StripPrefix=1
 
 

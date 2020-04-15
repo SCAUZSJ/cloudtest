@@ -1,0 +1,17 @@
+server:
+  port: 8020
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://milo:123456@milo-eureka:7000/eureka/
+
+spring:
+  application:
+    name: oauth-service
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 0
