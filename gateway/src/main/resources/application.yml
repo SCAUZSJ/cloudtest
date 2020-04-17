@@ -28,5 +28,9 @@ spring:
             - Path=/api/book/**
           filters:
             - StripPrefix=1
+        - id: oauth
+          uri: lb://oauth-service
+          predicates:
+            - Path=/oauth/**
 
 
