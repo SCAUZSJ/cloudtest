@@ -25,3 +25,17 @@
 描述：如上
 解决：自己实现一个注解@EnableMiloFeignClients去继承@EnableFeignClients，并设置默认属性
       String[] basePackages() default {"com.milo"}, 需要时也可传值。
+
+-----------------------------
+好久没更新 0.0
+
+[P5] 请求报Unauthorized，使用gateway转发oauth去拿token，返回“CSRF Token...”错误信息
+解决：服务虽无配置，但引用了security的包，会自动拦截请求，去掉依赖包。
+
+
+[P6] (2020-04-17)使用gateway转发调用oauth服务
+描述：/oauth/authorize进行认证时(使用授权码模式),由于请求转发，返回的登陆页面地址为本机IP地址,
+      无法进行该地址下的表单提交，其余/oauth/**无异常。
+解决：暂未解决。
+
+
