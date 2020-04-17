@@ -49,13 +49,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //    http.requestMatchers().antMatchers("/oauth/**")
 //        .and()
 //        .authorizeRequests()
-//        .antMatchers("/oauth/**").authenticated()
+//        .antMatchers("/oauth/**").permitAll()
 //        .and()
 //        .csrf().disable();
 
     http.httpBasic()
         .and()
-        .csrf().disable()
+        .csrf().disable() //禁止csrf
         .authorizeRequests()
         .antMatchers("/login", "/logout").permitAll()
         .anyRequest().authenticated()

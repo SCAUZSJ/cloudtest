@@ -19,7 +19,7 @@ public class MyUserDetailsService implements UserDetailsService {
     }
     Set<MyAuthority> authorities = new HashSet<>();
     authorities.add(new MyAuthority("order"));
-    MyUser user = new MyUser(username, "12345", authorities);
+    MyUser user = new MyUser(username, "123456", authorities);
     return user;
   }
 }

@@ -1,4 +1,4 @@
-package com.milo.order.configuration.errorPage;
+package com.milo.order.config.errorPage;
 
 import org.springframework.boot.web.server.ErrorPage;
 import org.springframework.boot.web.server.ErrorPageRegistrar;

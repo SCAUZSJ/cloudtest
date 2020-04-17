@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/oauth/user")
 public class TokenController {
 
-  @GetMapping("/user/getUserInfo")
+  @GetMapping("/getUserInfo")
   public Principal me(Principal me) {
-    System.out.println("User：" + me);
-    System.out.println(me.getName());
+    System.out.println("userName-->"+me.getName());
 //    Principal p = new Principal() {
 //      @Override
 //      public String getName() {

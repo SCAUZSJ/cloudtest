@@ -15,3 +15,13 @@ eureka:
       defaultZone: http://milo:123456@milo-eureka:7000/eureka/
   instance:
     prefer-ip-address: true #把ip地址注册到Eureka服务中
+
+## spring security
+security:
+  oauth2:
+    client:
+      client-id: client
+      client-secret: secret
+    resource:
+      loadBalanced: true
+      token-info-uri: http://oauth-service/oauth/check_token
