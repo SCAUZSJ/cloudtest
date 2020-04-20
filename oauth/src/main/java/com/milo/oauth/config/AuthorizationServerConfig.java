@@ -1,9 +1,8 @@
 package com.milo.oauth.config;
 
-import com.milo.oauth.model.AuthenticatedUser;
 import com.milo.oauth.service.MyClientDetailsService;
+import com.milo.oauth.service.MyUserAuthenticationConverter;
 import com.milo.oauth.service.MyUserDetailsService;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +17,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
+import org.springframework.security.oauth2.provider.token.DefaultAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
@@ -39,6 +39,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
   @Autowired
   private MyUserDetailsService userDetailsService;
+
+
 
 
   @Bean
@@ -75,11 +77,15 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
   @Override
   public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+
+    DefaultAccessTokenConverter defaultAccessTokenConverter = new DefaultAccessTokenConverter();
+    defaultAccessTokenConverter.setUserTokenConverter(new MyUserAuthenticationConverter());
     endpoints
         .authenticationManager(authenticationManager) //配置认证管理器
         .tokenServices(tokenServices()) //配置token存储的服务与位置
         .tokenStore(tokenStore())
-        .userDetailsService(userDetailsService); //配置用户服务
+        .userDetailsService(userDetailsService) //配置用户服务
+        .accessTokenConverter(defaultAccessTokenConverter);
   }
 
   @Override
@@ -99,10 +105,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
   public TokenEnhancer tokenEnhancer() {
     return (accessToken, authentication) -> {
       final Map<String, Object> additionalInfo = new HashMap<>(4);
-      AuthenticatedUser user = (AuthenticatedUser) authentication.getPrincipal();
-      additionalInfo.put("user", user.getUserName());
-      additionalInfo.put("age", user.getAge());
-      additionalInfo.put("gender", user.getGender());
+//      AuthenticatedUser user = (AuthenticatedUser) authentication.getPrincipal();
+//      additionalInfo.put("user", user.getUserName());
+//      additionalInfo.put("age", user.getAge());
+//      additionalInfo.put("gender", user.getGender());
+      additionalInfo.put("extra", "extra_info");
       ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInfo);
       return accessToken;
     };
