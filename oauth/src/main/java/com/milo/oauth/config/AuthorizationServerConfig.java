@@ -1,7 +1,9 @@
 package com.milo.oauth.config;
 
+import com.milo.oauth.model.AuthenticatedUser;
 import com.milo.oauth.service.MyClientDetailsService;
 import com.milo.oauth.service.MyUserDetailsService;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +17,6 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
-import org.springframework.security.oauth2.provider.error.WebResponseExceptionTranslator;
 import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
@@ -92,12 +93,16 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
   /**
    * token增强
+   * - 返回简单的userInfo
    */
   @Bean
   public TokenEnhancer tokenEnhancer() {
     return (accessToken, authentication) -> {
-      final Map<String, Object> additionalInfo = new HashMap<>(1);
-      additionalInfo.put("Enhancer_Params", "xxxxxx");
+      final Map<String, Object> additionalInfo = new HashMap<>(4);
+      AuthenticatedUser user = (AuthenticatedUser) authentication.getPrincipal();
+      additionalInfo.put("user", user.getUserName());
+      additionalInfo.put("age", user.getAge());
+      additionalInfo.put("gender", user.getGender());
       ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInfo);
       return accessToken;
     };
