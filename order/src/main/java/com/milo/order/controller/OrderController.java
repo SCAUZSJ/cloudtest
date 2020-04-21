@@ -1,5 +1,7 @@
 package com.milo.order.controller;
 
+import com.milo.order.config.resource.model.AuthenticatedUser;
+import com.milo.order.config.resource.utils.AuthUtils;
 import com.milo.order.model.Order;
 import com.milo.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +20,11 @@ public class OrderController {
 
   @GetMapping("/order/{id}")
   public Order selectOrderById(@PathVariable Long id, Authentication authentication){
-    System.out.println("authentiaction-->"+authentication.getName());
+    System.out.println("authentiaction_user_name_from_params-->"+authentication.getName());
+    AuthenticatedUser user = AuthUtils.getUser();
+    if(user!= null){
+      System.out.println("authentiaction_user_name_from_utils -->" + user.getUserName());
+    }
     return orderService.selectOrderById(id);
   }
 

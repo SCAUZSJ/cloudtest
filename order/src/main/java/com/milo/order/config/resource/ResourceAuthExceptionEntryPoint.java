@@ -21,6 +21,6 @@ public class ResourceAuthExceptionEntryPoint implements AuthenticationEntryPoint
   public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
       AuthenticationException e) {
 
-    System.out.println("exception: --->"+e.getMessage());
+    System.out.println("Resource Exception: --->"+e.getMessage() + " " +e.getCause().getMessage());
   }
 }
