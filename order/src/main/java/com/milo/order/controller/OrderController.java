@@ -18,7 +18,7 @@ public class OrderController {
   @Autowired
   private OrderService orderService;
 
-  @GetMapping("/order/{id}")
+  @GetMapping("/order/info/{id}")
   public Order selectOrderById(@PathVariable Long id, Authentication authentication){
     System.out.println("authentiaction_user_name_from_params-->"+authentication.getName());
     AuthenticatedUser user = AuthUtils.getUser();
@@ -26,6 +26,12 @@ public class OrderController {
       System.out.println("authentiaction_user_name_from_utils -->" + user.getUserName());
     }
     return orderService.selectOrderById(id);
+  }
+
+  @GetMapping("/order/common")
+  public String doSomething(){
+    System.out.println("do something without Authentication");
+    return "done";
   }
 
 

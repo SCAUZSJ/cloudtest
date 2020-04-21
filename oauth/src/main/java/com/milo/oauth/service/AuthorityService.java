@@ -20,7 +20,7 @@ public class AuthorityService {
     put("kkk", new BaseUser("kkk","19","female","123456"));
   }};
   final static Map<String, List<MyAuthority>> DB_AUTHORITIES = new HashMap<String, List<MyAuthority>>(){{
-    put("milo",Arrays.asList(new MyAuthority("/order/**")));
+    put("milo",Arrays.asList(new MyAuthority("/order/info/**")));
     put("kkk",null);
   }};
 

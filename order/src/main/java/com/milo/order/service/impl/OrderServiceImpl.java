@@ -1,7 +1,6 @@
 package com.milo.order.service.impl;
 
-import com.milo.bookservicefeign.api.BookFeign;
-import com.milo.order.model.Book;
+import com.milo.order.feign.BookFeign;
 import com.milo.order.model.Order;
 import com.milo.order.service.OrderService;
 import java.time.LocalDateTime;

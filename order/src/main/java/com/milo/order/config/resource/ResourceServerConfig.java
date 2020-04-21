@@ -3,6 +3,7 @@ package com.milo.order.config.resource;
 import com.milo.order.config.resource.service.AuthorityService;
 import com.milo.order.config.resource.service.AuthorityServiceImpl;
 import java.io.IOException;
+import javax.servlet.http.HttpServletRequest;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -21,6 +22,7 @@ import org.springframework.security.oauth2.provider.expression.OAuth2WebSecurity
 import org.springframework.security.oauth2.provider.token.DefaultAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.RemoteTokenServices;
 import org.springframework.security.oauth2.provider.token.UserAuthenticationConverter;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.web.client.DefaultResponseErrorHandler;
 import org.springframework.web.client.RestTemplate;
 
@@ -78,7 +80,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     ExpressionUrlAuthorizationConfigurer<HttpSecurity>
         .ExpressionInterceptUrlRegistry registry = httpSecurity
         .authorizeRequests();
-//    registry.antMatchers("/order/**").permitAll();
+    registry.antMatchers("/order/common/**").permitAll();
 //    permitAllUrlProperties.getIgnoreUrls()
 //        .forEach(url -> registry.antMatchers(url).permitAll());
     registry.anyRequest().access("@authorityService.hasPermission(request,authentication)")
@@ -97,5 +99,20 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     resources.expressionHandler(expressionHandler); //替换表达式处理器
   }
 
+
+  /**
+   * 定义OAuth2请求匹配器
+   */
+  private static class OAuth2RequestedMatcher implements RequestMatcher {
+
+    @Override
+    public boolean matches(HttpServletRequest request) {
+      String auth = request.getHeader("Authorization");
+      //判断来源请求是否包含oauth2授权信息,这里授权信息来源可能是头部的Authorization值以Bearer开头,或者是请求参数中包含access_token参数,满足其中一个则匹配成功
+      boolean haveOauth2Token = (auth != null) && auth.startsWith("Bearer");
+      boolean haveAccessToken = request.getParameter("access_token") != null;
+      return haveOauth2Token || haveAccessToken;
+    }
+  }
 
 }

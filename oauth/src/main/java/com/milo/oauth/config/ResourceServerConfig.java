@@ -44,37 +44,5 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         .authenticated();
   }
 
-//  @Override
-//  public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-//    //无状态
-//    resources.stateless(true);
-//    //设置token存储
-//    resources.tokenStore(tokenStore);
-//  }
-
-
-//  /**
-//   * 定义OAuth2请求匹配器
-//   */
-//  private static class OAuth2RequestedMatcher implements RequestMatcher {
-//
-//    @Override
-//    public boolean matches(HttpServletRequest request) {
-//      String auth = request.getHeader("Authorization");
-//      //判断来源请求是否包含oauth2授权信息,这里授权信息来源可能是头部的Authorization值以Bearer开头,或者是请求参数中包含access_token参数,满足其中一个则匹配成功
-//      boolean haveOauth2Token = (auth != null) && auth.startsWith("Bearer");
-//      boolean haveAccessToken = request.getParameter("access_token") != null;
-//      return haveOauth2Token || haveAccessToken;
-//    }
-//  }
-
-//  @Bean
-//  public TokenStore tokenStore() {
-//    RedisTokenStore tokenStore = new RedisTokenStore(redisConnectionFactory);
-//    tokenStore.setPrefix("MILO_OAUTH:");
-//    tokenStore.setSerializationStrategy(new JdkSerializationStrategy());
-//    return tokenStore;
-//  }
-
 
 }
