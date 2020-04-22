@@ -1,6 +1,7 @@
 package com.milo.order;
 
 import com.milo.common.config.annotation.EnableMiloFeignClients;
+import com.milo.security.annotation.Oauth2EnableResourceServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -14,6 +15,7 @@ import org.springframework.web.client.RestTemplate;
 @EnableHystrix
 //@EnableFeignClients(basePackages = {"com.milo"})
 @EnableMiloFeignClients
+@Oauth2EnableResourceServer
 public class OrderApplication {
 
   @Bean

@@ -1,4 +1,4 @@
-package com.milo.order.config.resource.model;
+package com.milo.security.model;
 
 import java.util.Collection;
 import lombok.Data;

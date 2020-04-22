@@ -1,7 +1,5 @@
-package com.milo.order.config.resource;
+package com.milo.security.config.resource;
 
-import java.io.IOException;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import lombok.SneakyThrows;
@@ -11,7 +9,8 @@ import org.springframework.stereotype.Component;
 
 
 /**
- * 客户端异常处理 1. 可以根据 AuthenticationException 不同细化异常处理
+ * 异常处理 - 细化
+ * AuthenticationException
  */
 @Component
 public class ResourceAuthExceptionEntryPoint implements AuthenticationEntryPoint {
@@ -21,6 +20,6 @@ public class ResourceAuthExceptionEntryPoint implements AuthenticationEntryPoint
   public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
       AuthenticationException e) {
 
-    System.out.println("Resource Exception: --->"+e.getMessage() + " " +e.getCause().getMessage());
+    System.out.println("Resource Exception: --->"+e.getMessage());
   }
 }

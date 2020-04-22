@@ -1,6 +1,6 @@
-package com.milo.order.config.resource.utils;
+package com.milo.security.utils;
 
-import com.milo.order.config.resource.model.AuthenticatedUser;
+import com.milo.security.model.AuthenticatedUser;
 import lombok.experimental.UtilityClass;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

@@ -1,7 +1,6 @@
-package com.milo.order.config.resource;
+package com.milo.security.config.resource;
 
-import com.milo.order.config.resource.service.AuthorityService;
-import com.milo.order.config.resource.service.AuthorityServiceImpl;
+import com.milo.security.annotation.Oauth2EnableResourceServer;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import lombok.SneakyThrows;
@@ -27,7 +26,7 @@ import org.springframework.web.client.DefaultResponseErrorHandler;
 import org.springframework.web.client.RestTemplate;
 
 @Configuration
-@EnableResourceServer
+@Oauth2EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
   @Autowired
@@ -114,5 +113,15 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
       return haveOauth2Token || haveAccessToken;
     }
   }
+
+  /**
+   * 注入OAuth2FeignRequestInterceptor 但有点垃圾
+   */
+//  @Bean
+//  @ConditionalOnProperty("security.oauth2.client.client-id")
+//  public RequestInterceptor OAuth2FeignRequestInterceptor(OAuth2ClientContext oAuth2ClientContext,
+//      OAuth2ProtectedResourceDetails resource) {
+//    return new OAuth2FeignRequestInterceptor(oAuth2ClientContext, resource, "Bearer", "Authorization");
+//  }
 
 }

@@ -1,9 +1,9 @@
 package com.milo.order.controller;
 
-import com.milo.order.config.resource.model.AuthenticatedUser;
-import com.milo.order.config.resource.utils.AuthUtils;
 import com.milo.order.model.Order;
 import com.milo.order.service.OrderService;
+import com.milo.security.model.AuthenticatedUser;
+import com.milo.security.utils.AuthUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +31,7 @@ public class OrderController {
   @GetMapping("/order/common")
   public String doSomething(){
     System.out.println("do something without Authentication");
+    Order order = orderService.selectOrderById(101L);
     return "done";
   }
 

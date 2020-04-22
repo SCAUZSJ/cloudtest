@@ -15,6 +15,21 @@
   <description>security-oauth2</description>
 
   <dependencies>
+
+    <!-- 依赖公共服务common -->
+    <dependency>
+      <groupId>com.milo</groupId>
+      <artifactId>common</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+
+    <!-- 依赖security公共包 -->
+    <dependency>
+      <groupId>com.milo</groupId>
+      <artifactId>security</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+
     <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-oauth2</artifactId>

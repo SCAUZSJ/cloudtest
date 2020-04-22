@@ -1,6 +1,6 @@
-package com.milo.order.config.resource;
+package com.milo.security.config.resource;
 
-import com.milo.order.config.resource.model.AuthenticatedUser;
+import com.milo.security.model.AuthenticatedUser;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;

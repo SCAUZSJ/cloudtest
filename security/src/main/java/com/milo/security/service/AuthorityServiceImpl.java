@@ -1,6 +1,6 @@
-package com.milo.order.config.resource.service;
+package com.milo.security.service;
 
-import com.milo.order.config.resource.model.AuthenticatedUser;
+import com.milo.security.model.AuthenticatedUser;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;

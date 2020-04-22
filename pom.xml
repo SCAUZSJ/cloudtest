@@ -103,10 +103,10 @@
   <modules>
     <module>common</module>
     <module>book</module>
-    <module>book2</module>
     <module>book-service-feign</module>
     <module>order</module>
     <module>eureka</module>
+    <module>security</module>
   </modules>
 
 </project>
