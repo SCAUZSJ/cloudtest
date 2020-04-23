@@ -1,10 +1,13 @@
 package com.milo.security.config.feign;
 
+import com.milo.common.constant.SecurityConstants;
 import feign.RequestTemplate;
+import java.util.Collection;
 import org.springframework.cloud.security.oauth2.client.AccessTokenContextRelay;
 import org.springframework.cloud.security.oauth2.client.feign.OAuth2FeignRequestInterceptor;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails;
+import org.springframework.util.CollectionUtils;
 
 public class MyOauth2FeignRequestInterceptor extends OAuth2FeignRequestInterceptor {
 
@@ -24,10 +27,10 @@ public class MyOauth2FeignRequestInterceptor extends OAuth2FeignRequestIntercept
    */
   @Override
   public void apply(RequestTemplate template) {
-//    Collection<String> fromHeader = template.headers().get(SecurityConstants.FROM);
-//    if (CollUtil.isNotEmpty(fromHeader) && fromHeader.contains(SecurityConstants.FROM_IN)) {
-//      return;
-//    }
+    Collection<String> fromHeader = template.headers().get(SecurityConstants.FROM);
+    if (!CollectionUtils.isEmpty(fromHeader) && fromHeader.contains(SecurityConstants.FROM_IN)) {
+      return;
+    }
 
     accessTokenContextRelay.copyToken();
     if (oAuth2ClientContext != null && oAuth2ClientContext.getAccessToken() != null) {

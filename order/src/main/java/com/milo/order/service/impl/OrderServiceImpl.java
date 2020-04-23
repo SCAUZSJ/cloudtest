@@ -1,6 +1,6 @@
 package com.milo.order.service.impl;
 
-import com.milo.order.feign.BookFeign;
+import com.milo.bookservicefeign.api.BookFeign;
 import com.milo.order.model.Order;
 import com.milo.order.service.OrderService;
 import java.time.LocalDateTime;
@@ -38,7 +38,6 @@ public class OrderServiceImpl implements OrderService {
    */
   @Override
   public Order selectOrderById(Long id) {
-//    String bookServiceUrl = "http://book-service/book/";
 
     Order order = ITEM_MAP.get(id);
     for(Long bookId : order.getBookIds()){

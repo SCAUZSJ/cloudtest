@@ -46,13 +46,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
    */
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-//    http.requestMatchers().antMatchers("/oauth/**")
-//        .and()
-//        .authorizeRequests()
-//        .antMatchers("/oauth/**").permitAll()
-//        .and()
-//        .csrf().disable();
-
     http.httpBasic()
         .and()
         .csrf().disable() //禁止csrf
@@ -85,7 +78,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Bean
   public PasswordEncoder passwordEncoder() {
-//    return new MyPasswordEncoder();
     return new MyPasswordEncoder();
   }
 

@@ -25,12 +25,6 @@ import org.springframework.security.web.util.matcher.RequestMatcher;
 @EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
-
-  @Autowired
-  private RedisConnectionFactory redisConnectionFactory;
-
-  @Autowired TokenStore tokenStore;
-
   @Override
   public void configure(HttpSecurity http) throws Exception {
     http

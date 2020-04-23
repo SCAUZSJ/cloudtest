@@ -43,7 +43,7 @@ public class UserDetailsAuthenticationConverter implements UserAuthenticationCon
       AuthenticatedUser authenticatedUser = new AuthenticatedUser(principal.toString(), "", authorities);
       authenticatedUser.setUserName(principal.toString());
       authenticatedUser.setAge((String) map.get("age"));
-//      authenticatedUser.setGender((String) map.get("gender"));
+      authenticatedUser.setGender((String) map.get("gender"));
       return new UsernamePasswordAuthenticationToken(authenticatedUser, "N/A", authorities);
     }
     return null;

@@ -1,11 +1,14 @@
 package com.milo.security.config.resource;
 
 import com.milo.security.annotation.Oauth2EnableResourceServer;
+import feign.RequestInterceptor;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.security.oauth2.client.feign.OAuth2FeignRequestInterceptor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +17,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
+import org.springframework.security.oauth2.client.OAuth2ClientContext;
+import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
@@ -99,24 +104,24 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
   }
 
 
-  /**
-   * 定义OAuth2请求匹配器
-   */
-  private static class OAuth2RequestedMatcher implements RequestMatcher {
+//  /**
+//   * 定义OAuth2请求匹配器
+//   */
+//  private static class OAuth2RequestedMatcher implements RequestMatcher {
+//
+//    @Override
+//    public boolean matches(HttpServletRequest request) {
+//      String auth = request.getHeader("Authorization");
+//      //判断来源请求是否包含oauth2授权信息,这里授权信息来源可能是头部的Authorization值以Bearer开头,或者是请求参数中包含access_token参数,满足其中一个则匹配成功
+//      boolean haveOauth2Token = (auth != null) && auth.startsWith("Bearer");
+//      boolean haveAccessToken = request.getParameter("access_token") != null;
+//      return haveOauth2Token || haveAccessToken;
+//    }
+//  }
 
-    @Override
-    public boolean matches(HttpServletRequest request) {
-      String auth = request.getHeader("Authorization");
-      //判断来源请求是否包含oauth2授权信息,这里授权信息来源可能是头部的Authorization值以Bearer开头,或者是请求参数中包含access_token参数,满足其中一个则匹配成功
-      boolean haveOauth2Token = (auth != null) && auth.startsWith("Bearer");
-      boolean haveAccessToken = request.getParameter("access_token") != null;
-      return haveOauth2Token || haveAccessToken;
-    }
-  }
-
-  /**
-   * 注入OAuth2FeignRequestInterceptor 但有点垃圾
-   */
+//  /**
+//   * 注入OAuth2FeignRequestInterceptor  有点蠢
+//   */
 //  @Bean
 //  @ConditionalOnProperty("security.oauth2.client.client-id")
 //  public RequestInterceptor OAuth2FeignRequestInterceptor(OAuth2ClientContext oAuth2ClientContext,
