@@ -16,7 +16,7 @@ public class BookController {
 
   @GetMapping(value = "book/{id}")
   public Book selectBookById(@PathVariable("id") Long id, HttpServletRequest request){
-    String header =  request.getHeader("Authorization");
+    System.out.println(request.getHeader("Authorization"));
     return bookService.selectBookById(id);
   }
 

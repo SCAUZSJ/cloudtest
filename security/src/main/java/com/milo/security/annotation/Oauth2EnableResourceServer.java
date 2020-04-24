@@ -1,6 +1,7 @@
 package com.milo.security.annotation;
 
 
+//import com.milo.security.config.feign.Oauth2FeignConfiguration;
 import com.milo.security.config.feign.Oauth2FeignConfiguration;
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -9,14 +10,13 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 
 /**
- * @author wwx
- * createTime 2019/3/4 16:51
- * desc 资源服务注解
+ * 资源服务注解
  */
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
