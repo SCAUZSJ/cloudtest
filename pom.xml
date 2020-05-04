@@ -43,6 +43,13 @@
       <artifactId>spring-cloud-starter-openfeign</artifactId>
     </dependency>
 
+    <!-- JSON -->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>1.2.5</version>
+    </dependency>
+
 <!--    &lt;!&ndash; oauth2 &ndash;&gt;-->
 <!--    <dependency>-->
 <!--      <groupId>org.springframework.cloud</groupId>-->

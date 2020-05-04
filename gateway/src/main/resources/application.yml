@@ -12,6 +12,10 @@ eureka:
 spring:
   application:
     name: gateway-service
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 0
   cloud:
     gateway:
       routes:
@@ -22,6 +26,11 @@ spring:
           filters:
             # Filter
             - StripPrefix=1  # 去除前缀级别
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 2  # 允许用户每秒处理多少个请求
+                redis-rate-limiter.burstCapacity: 4  # 令牌桶的容量，允许在一秒钟内完成的最大请求数
+                key-resolver: "#{@MyKeyResolver}" #SPEL表达式
         - id: book
           uri: lb://book-service
           predicates:
@@ -32,5 +41,11 @@ spring:
           uri: lb://oauth-service
           predicates:
             - Path=/oauth/**
+          filters:
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 2
+                redis-rate-limiter.burstCapacity: 4
+                key-resolver: "#{@MyKeyResolver}"
 
 
