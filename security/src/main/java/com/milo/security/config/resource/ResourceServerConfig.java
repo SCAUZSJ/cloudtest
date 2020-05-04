@@ -43,6 +43,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
   @Autowired
   private OAuth2WebSecurityExpressionHandler expressionHandler;
 
+  @Autowired
+  private IgnoreUrlProperties ignoreUrlProperties;
+
   @Bean
   public OAuth2WebSecurityExpressionHandler oAuth2WebSecurityExpressionHandler(ApplicationContext applicationContext) {
     OAuth2WebSecurityExpressionHandler expressionHandler = new OAuth2WebSecurityExpressionHandler();
@@ -85,8 +88,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         .ExpressionInterceptUrlRegistry registry = httpSecurity
         .authorizeRequests();
     registry.antMatchers("/order/common/**").permitAll();
-//    permitAllUrlProperties.getIgnoreUrls()
-//        .forEach(url -> registry.antMatchers(url).permitAll());
+    ignoreUrlProperties.getIgnoreUrls() // ignore url 不鉴权
+        .forEach(url -> registry.antMatchers(url).permitAll());
     registry.anyRequest().access("@authorityService.hasPermission(request,authentication)")
         .and().csrf().disable();
   }
