@@ -87,7 +87,6 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     ExpressionUrlAuthorizationConfigurer<HttpSecurity>
         .ExpressionInterceptUrlRegistry registry = httpSecurity
         .authorizeRequests();
-    registry.antMatchers("/order/common/**").permitAll();
     ignoreUrlProperties.getIgnoreUrls() // ignore url 不鉴权
         .forEach(url -> registry.antMatchers(url).permitAll());
     registry.anyRequest().access("@authorityService.hasPermission(request,authentication)")

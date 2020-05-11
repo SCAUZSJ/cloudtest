@@ -1,0 +1,12 @@
+server:
+  port: 4044
+
+spring:
+  application:
+    name: monitor-admin
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://milo:123456@milo-eureka:7000/eureka/
+

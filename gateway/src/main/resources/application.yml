@@ -49,3 +49,28 @@ spring:
                 key-resolver: "#{@MyKeyResolver}"
 
 
+# 暴露监控端点
+management:
+  #  metrics:
+  #    web:
+  #      client:
+  #        max-uri-tags: 500 #默认为100
+  #      server:
+  #        max-uri-tags: 500 #默认为100
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always #是否显示详述when_authorized，never,always
+      # never：从不展示健康项
+      # when-authorized：签名认证之后展示
+      # always：每次都展示
+#  health:
+#    mail:
+#      enabled: true
+#    rabbit:
+#      enabled: false
+#    binders:
+#      enabled: true

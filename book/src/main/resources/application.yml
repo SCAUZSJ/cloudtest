@@ -26,6 +26,18 @@ security:
     client:
       client-id: client
       client-secret: secret
+      ignore-urls:
+        - /actuator/**
     resource:
       loadBalanced: true
       token-info-uri: http://oauth-service/oauth/check_token
+
+# 暴露监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always #是否显示详述when_authorized，never,always
